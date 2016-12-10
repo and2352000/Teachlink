@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Teachlink</string>
+    <string name="bt_submit">SUBMIT</string>
 </resources>
