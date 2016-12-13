@@ -8,8 +8,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -41,7 +43,12 @@ public class MainActivity extends AppCompatActivity {
                             url = new URL("http://192.168.1.170/");
                             urlConnection = (HttpURLConnection) url.openConnection();
                             Log.d("Connecting status!!!", String.valueOf(urlConnection.getResponseCode()));
-                            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                            InputStream dataStream = new BufferedInputStream(urlConnection.getInputStream());
+                            InputStreamReader streamReader = new InputStreamReader(dataStream,"UTF-8");
+                            BufferedReader  br = new BufferedReader(streamReader);
+                            String line;
+                            line=br.readLine();
+                            //tv_showData.setText(line);
                         } catch (MalformedURLException e) {
                             e.printStackTrace();
                         } catch (IOException e) {
