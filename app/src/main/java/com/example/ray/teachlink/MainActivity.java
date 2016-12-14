@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         mHandler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
+                //What you want to do with these data? Just write here!
                 super.handleMessage(msg);
                 Bundle bundle= msg.getData();
                 String content = bundle.getString("content");
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             try {
-                URL url = new URL("http://192.168.0.23/");
+                URL url = new URL("http://192.168.0.20/");
                 WebData webData = new WebData(url,mHandler);
                 webData.getData();
             } catch (MalformedURLException e) {
