@@ -17,6 +17,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by ray on 2016/12/14.
@@ -25,6 +27,8 @@ import java.net.URL;
 public class WebData {
     private URL url=null;
     private Handler mHandler;
+    private Map<String,String> reqData;
+    private String query=null;
     //private UserInfo user;
     public WebData(URL url,Handler mHandler){
         this.url=url;
@@ -44,14 +48,6 @@ public class WebData {
                     urlConnection.setDoInput(true);
                     urlConnection.setRequestMethod("POST");
                     urlConnection.setUseCaches(false);
-
-                    //Append parameters to URL
-                    Uri.Builder builder = new Uri.Builder()
-                            .appendQueryParameter("select","login")
-                            .appendQueryParameter("username","juiz")
-                            .appendQueryParameter("password","test");
-                    String query = builder.build().getEncodedQuery();
-                    Log.d("POST query",query);
 
                     //Open connection for sending data
                     OutputStream os =urlConnection.getOutputStream();
@@ -89,6 +85,19 @@ public class WebData {
                 }
             }
         }).start();
+    }
+    public void setReqData(Map<String,String> reqData){
+        this.reqData=reqData;
+        Uri.Builder builder = new Uri.Builder();
+        //Append parameters to URL
+        if(reqData.get("select")=="login") {
+            builder = builder
+                    .appendQueryParameter("select",reqData.get("select"))
+                    .appendQueryParameter("username", reqData.get("username"))
+                    .appendQueryParameter("password", reqData.get("password"));
+            query = builder.build().getEncodedQuery();
+            Log.d("POST query",query);
+        }
     }
 
 }

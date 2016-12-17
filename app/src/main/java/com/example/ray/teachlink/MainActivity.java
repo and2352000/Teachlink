@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.ArrayMap;
 import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
@@ -11,8 +12,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -55,7 +59,12 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             try {
                 URL url = new URL("http://192.168.1.170");
+                ArrayMap<String , String> reqData = new ArrayMap();
+                reqData.put("select","login");
+                reqData.put("username","juiz");
+                reqData.put("password","123");
                 WebData webData = new WebData(url,mHandler);
+                webData.setReqData(reqData);
                 webData.getData();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
