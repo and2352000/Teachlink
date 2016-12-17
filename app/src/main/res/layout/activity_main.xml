@@ -14,7 +14,7 @@
         android:id="@+id/tv_showData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="Welcome!!"
         android:textSize="25sp"/>
     <Button
         android:id="@+id/bt_submit"

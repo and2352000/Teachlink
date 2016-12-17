@@ -47,9 +47,11 @@ public class WebData {
 
                     //Append parameters to URL
                     Uri.Builder builder = new Uri.Builder()
+                            .appendQueryParameter("select","login")
                             .appendQueryParameter("username","juiz")
                             .appendQueryParameter("password","test");
                     String query = builder.build().getEncodedQuery();
+                    Log.d("POST query",query);
 
                     //Open connection for sending data
                     OutputStream os =urlConnection.getOutputStream();
@@ -70,7 +72,9 @@ public class WebData {
                     Log.d("Web Content!!!!! : ",line);
                     Bundle bundle =new Bundle();
                     bundle.putString("content",line);
+                    //set msg
                     Message msg = new Message();
+                    msg.what=1;
                     msg.setData(bundle);
                     mHandler.sendMessage(msg);
                     //tv_showData.setText(line);

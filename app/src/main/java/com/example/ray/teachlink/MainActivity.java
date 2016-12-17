@@ -4,10 +4,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -30,8 +33,17 @@ public class MainActivity extends AppCompatActivity {
                 //What you want to do with these data? Just write here!
                 super.handleMessage(msg);
                 Bundle bundle= msg.getData();
+                int select=msg.what;
                 String content = bundle.getString("content");
-                tv_showData.setText(content);
+
+                switch (select){
+                    case 1:
+                        if(true) {
+                            Toast.makeText(MainActivity.this, content, Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                }
+
             }
         };
 
@@ -42,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             try {
-                URL url = new URL("http://192.168.0.20/");
+                URL url = new URL("http://192.168.1.170");
                 WebData webData = new WebData(url,mHandler);
                 webData.getData();
             } catch (MalformedURLException e) {
