@@ -60,9 +60,15 @@ public class MainActivity extends AppCompatActivity {
             try {
                 URL url = new URL("http://192.168.1.170");
                 ArrayMap<String , String> reqData = new ArrayMap();
-                reqData.put("select","login");
-                reqData.put("username","juiz");
-                reqData.put("password","123");
+                /*reqData.put("select","login");
+                reqData.put("username","stu");
+                reqData.put("password","stu");*/
+                /*reqData.put("select","c_ques");
+                reqData.put("quesData","{json data****}");*/
+
+                reqData.put("select","stu_ans");
+                reqData.put("stuAns","b");
+
                 WebData webData = new WebData(url,mHandler);
                 webData.setReqData(reqData);
                 webData.getData();

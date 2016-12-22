@@ -95,9 +95,20 @@ public class WebData {
                     .appendQueryParameter("select",reqData.get("select"))
                     .appendQueryParameter("username", reqData.get("username"))
                     .appendQueryParameter("password", reqData.get("password"));
-            query = builder.build().getEncodedQuery();
-            Log.d("POST query",query);
+        }else if(reqData.get("select")=="c_ques"){
+            builder = builder
+                    .appendQueryParameter("select",reqData.get("select"))
+                    .appendQueryParameter("quesData", reqData.get("quesData"));
+        }else if(reqData.get("select")=="stu_ans"){
+            builder = builder
+                    .appendQueryParameter("select",reqData.get("select"))
+                    .appendQueryParameter("stuAns",reqData.get("stuAns"));
+        }else if(reqData.get("select")=="class_history"){
+            builder = builder
+                    .appendQueryParameter("select",reqData.get("select"));
         }
+        query = builder.build().getEncodedQuery();
+        Log.d("POST query",query);
     }
 
 }
