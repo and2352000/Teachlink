@@ -106,6 +106,10 @@ public class WebData {
         }else if(reqData.get("select")=="class_history"){
             builder = builder
                     .appendQueryParameter("select",reqData.get("select"));
+        }else if(reqData.get("select")=="roll_call"){
+            builder = builder
+                    .appendQueryParameter("select",reqData.get("select"))
+                    .appendQueryParameter("classStu",reqData.get("classStu"));
         }
         query = builder.build().getEncodedQuery();
         Log.d("POST query",query);
